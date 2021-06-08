@@ -13,6 +13,7 @@ import net.minecraft.core.SectionPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -387,11 +388,7 @@ public abstract class StarLightEngine {
         this.emptinessMapCache[chunkX + 5*chunkZ + this.chunkIndexOffset] = emptinessMap;
     }
 
-    public static SWMRNibbleArray[] getFilledEmptyLight() {
-        return getFilledEmptyLight(16 - (-1) + 1);
-    }
-
-    public static SWMRNibbleArray[] getFilledEmptyLight(final Level world) {
+    public static SWMRNibbleArray[] getFilledEmptyLight(final LevelHeightAccessor world) {
         return getFilledEmptyLight(WorldUtil.getTotalLightSections(world));
     }
 
