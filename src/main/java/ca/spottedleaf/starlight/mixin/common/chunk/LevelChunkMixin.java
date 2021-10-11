@@ -83,11 +83,10 @@ public abstract class LevelChunkMixin implements ExtendedChunk, ChunkAccess {
      * TODO since this is a constructor inject, check for new constructors on update.
      */
     @Inject(
-            method = "<init>(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ProtoChunk;Ljava/util/function/Consumer;)V",
+            method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/chunk/ProtoChunk;)V",
             at = @At("TAIL")
     )
-    public void onTransitionToFull(final ServerLevel serverLevel, final ProtoChunk protoChunk,
-                                   @Nullable Consumer<LevelChunk> consumer, final CallbackInfo ci) {
+    public void onTransitionToFull(final Level level, final ProtoChunk protoChunk, final CallbackInfo ci) {
         this.setBlockNibbles(((ExtendedChunk)protoChunk).getBlockNibbles());
         this.setSkyNibbles(((ExtendedChunk)protoChunk).getSkyNibbles());
         this.setSkyEmptinessMap(((ExtendedChunk)protoChunk).getSkyEmptinessMap());

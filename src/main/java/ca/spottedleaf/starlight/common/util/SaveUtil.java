@@ -145,7 +145,7 @@ public final class SaveUtil {
         // start copy from from the original method
         CompoundTag levelTag = tag.getCompound("Level");
         boolean lit = levelTag.get("isLightOn") != null && levelTag.getInt(STARLIGHT_VERSION_TAG) == STARLIGHT_LIGHT_VERSION;
-        boolean canReadSky = world.dimensionType().hasSkyLight();
+        boolean canReadSky = world.getDimension().getType().hasSkyLight();
         ChunkStatus status = ChunkStatus.byName(tag.getCompound("Level").getString("Status"));
         if (lit && status.isOrAfter(ChunkStatus.LIGHT)) { // diff - we add the status check here
             ListTag sections = levelTag.getList("Sections", 10);

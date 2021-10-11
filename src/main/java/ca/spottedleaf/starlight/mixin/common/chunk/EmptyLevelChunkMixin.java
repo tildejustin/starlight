@@ -4,10 +4,10 @@ import ca.spottedleaf.starlight.common.chunk.ExtendedChunk;
 import ca.spottedleaf.starlight.common.light.SWMRNibbleArray;
 import ca.spottedleaf.starlight.common.light.StarLightEngine;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.EmptyLevelChunk;
-import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.level.chunk.ProtoChunk;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.EmptyTickList;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.*;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import java.util.function.Consumer;
@@ -15,9 +15,8 @@ import java.util.function.Consumer;
 @Mixin(EmptyLevelChunk.class)
 public abstract class EmptyLevelChunkMixin extends LevelChunk implements ChunkAccess, ExtendedChunk {
 
-    public EmptyLevelChunkMixin(final ServerLevel serverLevel, final ProtoChunk protoChunk,
-                                final @Nullable Consumer<LevelChunk> consumer) {
-        super(serverLevel, protoChunk, consumer);
+    public EmptyLevelChunkMixin(Level level, ChunkPos chunkPos, ChunkBiomeContainer chunkBiomeContainer) {
+        super(level, chunkPos, chunkBiomeContainer);
     }
 
     @Override

@@ -2,9 +2,8 @@ package ca.spottedleaf.starlight.mixin.common.blockstate;
 
 import ca.spottedleaf.starlight.common.blockstate.ExtendedAbstractBlockState;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.AbstractStateHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateHolder;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -16,19 +15,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BlockBehaviour.BlockStateBase.class)
-public abstract class BlockStateBaseMixin extends StateHolder<Block, BlockState> implements ExtendedAbstractBlockState {
+@Mixin(BlockState.class)
+public abstract class BlockStateBaseMixin extends AbstractStateHolder<Block, BlockState> implements StateHolder<BlockState>, ExtendedAbstractBlockState {
 
     @Shadow
     @Final
     private boolean useShapeForLightOcclusion;
 
     @Shadow
-    @Final
-    private boolean canOcclude;
-
-    @Shadow
-    protected BlockBehaviour.BlockStateBase.Cache cache;
+    protected BlockState.Cache cache;
 
     @Unique
     private int opacityIfCached;
@@ -36,8 +31,8 @@ public abstract class BlockStateBaseMixin extends StateHolder<Block, BlockState>
     @Unique
     private boolean isConditionallyFullOpaque;
 
-    protected BlockStateBaseMixin(final Block object, final ImmutableMap<Property<?>, Comparable<?>> immutableMap, final MapCodec<BlockState> mapCodec) {
-        super(object, immutableMap, mapCodec);
+    protected BlockStateBaseMixin(final Block object, ImmutableMap<Property<?>, Comparable<?>> immutableMap) {
+        super(object, immutableMap);
     }
 
     /**
@@ -48,16 +43,14 @@ public abstract class BlockStateBaseMixin extends StateHolder<Block, BlockState>
             at = @At("RETURN")
     )
     public void initLightAccessState(final CallbackInfo ci) {
-        this.isConditionallyFullOpaque = this.canOcclude & this.useShapeForLightOcclusion;
+        this.isConditionallyFullOpaque = this.useShapeForLightOcclusion;
         this.opacityIfCached = this.cache == null || this.isConditionallyFullOpaque ? -1 : this.cache.lightBlock;
     }
 
-    @Override
     public final boolean isConditionallyFullOpaque() {
         return this.isConditionallyFullOpaque;
     }
 
-    @Override
     public final int getOpacityIfCached() {
         return this.opacityIfCached;
     }

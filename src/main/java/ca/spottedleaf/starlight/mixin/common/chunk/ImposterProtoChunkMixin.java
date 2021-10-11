@@ -3,7 +3,6 @@ package ca.spottedleaf.starlight.mixin.common.chunk;
 import ca.spottedleaf.starlight.common.light.SWMRNibbleArray;
 import ca.spottedleaf.starlight.common.chunk.ExtendedChunk;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ImposterProtoChunk;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -20,8 +19,8 @@ public abstract class ImposterProtoChunkMixin extends ProtoChunk implements Chun
     @Shadow
     private LevelChunk wrapped;
 
-    public ImposterProtoChunkMixin(final ChunkPos chunkPos, final UpgradeData upgradeData, final LevelHeightAccessor levelHeightAccessor) {
-        super(chunkPos, upgradeData, levelHeightAccessor);
+    public ImposterProtoChunkMixin(ChunkPos chunkPos, UpgradeData upgradeData) {
+        super(chunkPos, upgradeData);
     }
 
     @Override

@@ -73,31 +73,6 @@ public final class StarLightInterface {
         }
         this.lightEngine = lightEngine;
         this.skyReader = !hasSkyLight ? LayerLightEventListener.DummyLightLayerEventListener.INSTANCE : new LayerLightEventListener() {
-            @Override
-            public void checkBlock(final BlockPos blockPos) {
-                StarLightInterface.this.lightEngine.checkBlock(blockPos.immutable());
-            }
-
-            @Override
-            public void onBlockEmissionIncrease(final BlockPos blockPos, final int i) {
-                // skylight doesn't care
-            }
-
-            @Override
-            public boolean hasLightWork() {
-                // not really correct...
-                return StarLightInterface.this.hasUpdates();
-            }
-
-            @Override
-            public int runUpdates(final int i, final boolean bl, final boolean bl2) {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public void enableLightSources(final ChunkPos chunkPos, final boolean bl) {
-                throw new UnsupportedOperationException();
-            }
 
             @Override
             public DataLayer getDataLayerData(final SectionPos pos) {
@@ -201,31 +176,6 @@ public final class StarLightInterface {
             }
         };
         this.blockReader = !hasBlockLight ? LayerLightEventListener.DummyLightLayerEventListener.INSTANCE : new LayerLightEventListener() {
-            @Override
-            public void checkBlock(final BlockPos blockPos) {
-                StarLightInterface.this.lightEngine.checkBlock(blockPos.immutable());
-            }
-
-            @Override
-            public void onBlockEmissionIncrease(final BlockPos blockPos, final int i) {
-                this.checkBlock(blockPos);
-            }
-
-            @Override
-            public boolean hasLightWork() {
-                // not really correct...
-                return StarLightInterface.this.hasUpdates();
-            }
-
-            @Override
-            public int runUpdates(final int i, final boolean bl, final boolean bl2) {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public void enableLightSources(final ChunkPos chunkPos, final boolean bl) {
-                throw new UnsupportedOperationException();
-            }
 
             @Override
             public DataLayer getDataLayerData(final SectionPos pos) {
