@@ -55,6 +55,9 @@ public final class StarLightInterface {
 
     public final LevelLightEngine lightEngine;
 
+    private final boolean hasBlockLight;
+    private final boolean hasSkyLight;
+
     public StarLightInterface(final LightChunkGetter lightAccess, final boolean hasSkyLight, final boolean hasBlockLight, final LevelLightEngine lightEngine) {
         this.lightAccess = lightAccess;
         this.world = lightAccess == null ? null : (Level)lightAccess.getLevel();
@@ -73,6 +76,8 @@ public final class StarLightInterface {
             this.maxLightSection = WorldUtil.getMaxLightSection(this.world);
         }
         this.lightEngine = lightEngine;
+        this.hasBlockLight = hasBlockLight;
+        this.hasSkyLight = hasSkyLight;
         this.skyReader = !hasSkyLight ? LayerLightEventListener.DummyLightLayerEventListener.INSTANCE : new LayerLightEventListener() {
             @Override
             public DataLayer getDataLayerData(final SectionPos pos) {
@@ -129,6 +134,9 @@ public final class StarLightInterface {
     }
 
     public int getSkyLightValue(final BlockPos blockPos, final ChunkAccess chunk) {
+        if (!this.hasSkyLight) {
+            return 0;
+        }
         final int x = blockPos.getX();
         int y = blockPos.getY();
         final int z = blockPos.getZ();
@@ -196,6 +204,9 @@ public final class StarLightInterface {
     }
 
     public int getBlockLightValue(final BlockPos blockPos, final ChunkAccess chunk) {
+        if (!this.hasBlockLight) {
+            return 0;
+        }
         final int y = blockPos.getY();
         final int cy = y >> 4;
 
