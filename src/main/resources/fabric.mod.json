@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "starlight",
+  "id": "${archivesBaseName}",
   "version": "${version}",
   "name": "Starlight",
   "description": "Rewrites the light engine to fix lighting performance and lighting errors",
@@ -26,6 +26,6 @@
   "accessWidener" : "starlight.accesswidener",
   "depends": {
     "fabricloader": ">=0.10.8",
-    "minecraft": "~1.14"
+    "minecraft": ">1.14.2 <=1.14.4"
   }
 }
