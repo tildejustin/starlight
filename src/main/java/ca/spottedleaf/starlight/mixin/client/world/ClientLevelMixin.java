@@ -23,10 +23,8 @@ public abstract class ClientLevelMixin extends Level implements ExtendedWorld {
 
     @Unique
     private VariableBlockLightHandler customBlockLightHandler;
-
-    protected ClientLevelMixin(final WritableLevelData writableLevelData, final ResourceKey<Level> resourceKey, final DimensionType dimensionType,
-                               final Supplier<ProfilerFiller> supplier, final boolean bl, final boolean bl2, final long l) {
-        super(writableLevelData, resourceKey, dimensionType, supplier, bl, bl2, l);
+    protected ClientLevelMixin(WritableLevelData writableLevelData, ResourceKey<Level> resourceKey, ResourceKey<DimensionType> resourceKey2, DimensionType dimensionType, Supplier<ProfilerFiller> supplier, boolean bl, boolean bl2, long l) {
+        super(writableLevelData, resourceKey, resourceKey2, dimensionType, supplier, bl, bl2, l);
     }
 
     @Override
