@@ -17,7 +17,7 @@ def getGitCommit = { ->
 }
 
 archivesBaseName = project.archives_base_name
-version = "fabric-" + project.mod_version + "-" + getGitCommit()
+version = "fabric-" + project.mod_version + "-" + project.minecraft_version
 group = project.maven_group
 
 dependencies {
