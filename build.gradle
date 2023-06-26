@@ -30,7 +30,7 @@ def getVersionMetadata() {
 }
 
 archivesBaseName = project.archives_base_name
-version = "${getVersionMetadata()}+1.16.1"
+version = "${getVersionMetadata()}"
 group = project.maven_group
 
 dependencies {
