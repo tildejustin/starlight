@@ -7,7 +7,6 @@ plugins {
 /*
  * Gets the version name from the latest Git tag
  */
-// https://stackoverflow.com/questions/28498688/gradle-script-to-autoversion-and-include-the-commit-hash-in-android
 def getVersionMetadata() {
     // CI builds version numbers
     def build_id = System.getenv("RELEASE_TAG")
@@ -29,8 +28,8 @@ def getVersionMetadata() {
     return "rev.${id}"
 }
 
-archivesBaseName = project.archives_base_name
-version = "1.16.1-${getVersionMetadata()}"
+archivesBaseName = "${project.archives_base_name}-${project.minecraft_version}"
+version = "${getVersionMetadata()}"
 group = project.maven_group
 
 dependencies {
@@ -48,10 +47,11 @@ dependencies {
 }
 
 processResources {
+    inputs.property "mod_id", project.archives_base_name
     inputs.property "version", project.version
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "mod_id": project.archives_base_name, "version": project.version
     }
 }
 
@@ -77,5 +77,5 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 jar {
-    from "LICENSE"
+    from "LICENSE.txt"
 }
