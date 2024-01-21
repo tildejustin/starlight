@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "${archivesBaseName}",
+  "id": "${mod_id}",
   "version": "${version}",
   "name": "Starlight",
   "description": "Rewrites the light engine to fix lighting performance and lighting errors",
