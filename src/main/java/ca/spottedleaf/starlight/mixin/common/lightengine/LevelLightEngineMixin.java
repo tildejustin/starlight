@@ -159,7 +159,10 @@ public abstract class LevelLightEngineMixin implements LightEventListener, StarL
      */
     @Overwrite
     public int getRawBrightness(final BlockPos pos, final int ambientDarkness) {
-        return this.lightEngine.getRawBrightness(pos, ambientDarkness);
+        // need to use new light hooks for this
+        final int sky = this.lightEngine.getSkyReader().getLightValue(pos) - ambientDarkness;
+        final int block = this.lightEngine.getBlockReader().getLightValue(pos);
+        return Math.max(sky, block);
     }
 
     @Unique
