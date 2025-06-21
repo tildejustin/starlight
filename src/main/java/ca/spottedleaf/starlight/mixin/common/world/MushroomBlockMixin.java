@@ -27,7 +27,7 @@ public abstract class MushroomBlockMixin {
         if (chunk.getStatus().isOrAfter(ChunkStatus.LIGHT)) {
             return original.call(instance, blockPos, ambiance);
         }
-        if (!instance.dimensionType().hasSkyLight()) {
+        if (!instance.getDimension().isHasSkyLight()) {
             return 0;
         }
         if (chunk.getStatus().isOrAfter(ChunkStatus.FEATURES)) {

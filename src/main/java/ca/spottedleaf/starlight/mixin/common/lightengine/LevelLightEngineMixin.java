@@ -141,8 +141,7 @@ public abstract class LevelLightEngineMixin implements LightEventListener, StarL
      * @author Spottedleaf
      */
     @Overwrite
-    public void queueSectionData(final LightLayer lightType, final SectionPos pos, @Nullable final DataLayer nibble,
-                                 final boolean trustEdges) {}
+    public void queueSectionData(final LightLayer lightType, final SectionPos pos, @Nullable final DataLayer nibble) {}
 
     /**
      * @reason Avoid messing with the vanilla light engine state
