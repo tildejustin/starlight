@@ -2,6 +2,7 @@ package ca.spottedleaf.starlight.common.light;
 
 import ca.spottedleaf.starlight.common.blockstate.ExtendedAbstractBlockState;
 import ca.spottedleaf.starlight.common.chunk.ExtendedChunk;
+import ca.spottedleaf.starlight.common.palette.LevelChunkSectionExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -216,7 +217,7 @@ public final class BlockStarLightEngine extends StarLightEngine {
                 // no sources in empty sections
                 continue;
             }
-            if (!section.maybeHas((final BlockState state) -> {
+            if (!((LevelChunkSectionExtension) section).maybeHas((final BlockState state) -> {
                 return state.getLightEmission() > 0;
             })) {
                 // no light sources in palette
