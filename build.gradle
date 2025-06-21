@@ -20,6 +20,7 @@ dependencies {
     //mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modCompileOnly files("libs/lithium-mc1.15.2-fabric-0.4.6-mod.jar")
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     //modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"

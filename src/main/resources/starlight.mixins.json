@@ -16,6 +16,7 @@
     "common.palette.HashMapPaletteMixin",
     "common.palette.LevelChunkSectionMixin",
     "common.palette.LinearPaletteMixin",
+    "common.palette.LithiumHashPaletteMixin",
     "common.palette.PalettedContainerMixin",
     "common.world.BiomeMixin",
     "common.world.ChunkSerializerMixin",
