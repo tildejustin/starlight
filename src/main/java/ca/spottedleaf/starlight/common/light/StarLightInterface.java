@@ -225,10 +225,10 @@ public final class StarLightInterface {
         return nibble.getVisible(blockPos.getX(), y, blockPos.getZ());
     }
 
-    public int getRawBrightness(final BlockPos pos, final int ambientDarkness) {
+    public int getRawBrightness(final BlockPos pos, final int ambientDarkness, final boolean hasSkyLight) {
         final ChunkAccess chunk = this.getAnyChunkNow(pos.getX() >> 4, pos.getZ() >> 4);
 
-        final int sky = this.getSkyLightValue(pos, chunk) - ambientDarkness;
+        final int sky = hasSkyLight ? this.getSkyLightValue(pos, chunk) - ambientDarkness : 0;
         // Don't fetch the block light level if the skylight level is 15, since the value will never be higher.
         if (sky == 15) {
             return 15;

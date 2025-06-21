@@ -152,15 +152,6 @@ public abstract class LevelLightEngineMixin implements LightEventListener, StarL
         // not used by new light impl
     }
 
-    /**
-     * @reason Need to use our own hooks for retrieving light data
-     * @author Spottedleaf
-     */
-    @Overwrite
-    public int getRawBrightness(final BlockPos pos, final int ambientDarkness) {
-        return this.lightEngine.getRawBrightness(pos, ambientDarkness);
-    }
-
     @Unique
     protected final Long2ObjectOpenHashMap<SWMRNibbleArray[]> blockLightMap = new Long2ObjectOpenHashMap<>();
 

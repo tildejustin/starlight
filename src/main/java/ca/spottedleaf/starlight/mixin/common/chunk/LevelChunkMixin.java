@@ -6,9 +6,9 @@ import ca.spottedleaf.starlight.common.chunk.ExtendedChunk;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.TickList;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.ChunkBiomeContainer;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
@@ -97,10 +97,10 @@ public abstract class LevelChunkMixin implements ExtendedChunk, ChunkAccess {
      * TODO since this is a constructor inject, check for new constructors on update.
      */
     @Inject(
-            method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/TickList;Lnet/minecraft/world/level/TickList;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/Consumer;)V",
+            method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;[Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/TickList;Lnet/minecraft/world/level/TickList;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/Consumer;)V",
             at = @At("TAIL")
     )
-    public void onConstruct(final Level world, final ChunkPos chunkPos, final ChunkBiomeContainer chunkBiomeContainer,
+    public void onConstruct(final Level world, final ChunkPos chunkPos, final Biome[] biomes,
                             final UpgradeData upgradeData, final TickList<Block> tickList, final TickList<Fluid> tickList2,
                             final long l, final @Nullable LevelChunkSection[] levelChunkSections, final @Nullable Consumer<LevelChunk> consumer,
                             CallbackInfo ci) {

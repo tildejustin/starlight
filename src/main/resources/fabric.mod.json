@@ -14,7 +14,8 @@
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/starlight"
   },
   "breaks": {
-    "phosphor" : "*"
+    "phosphor" : "*",
+    "optifabric": "*"
   },
   "license": "LGPL-3.0-only",
   "icon": "assets/starlight/icon.png",
@@ -26,6 +27,6 @@
   "accessWidener" : "starlight.accesswidener",
   "depends": {
     "fabricloader": ">=0.16.0",
-    "minecraft": "1.15.x"
+    "minecraft": ">=1.14.2 <=1.14.4"
   }
 }

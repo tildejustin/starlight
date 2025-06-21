@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(LakeFeature.class)
 public abstract class LakeFeatureMixin {
     @WrapOperation(
-            method = "place(Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/configurations/BlockStateConfiguration;)Z",
+            method = "place(Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/LakeConfiguration;)Z",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelAccessor;getBrightness(Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/BlockPos;)I")
     )
     private int removeBrightnessCalls(LevelAccessor instance, LightLayer lightLayer, BlockPos blockPos, Operation<Integer> original) {
