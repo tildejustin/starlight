@@ -15,12 +15,12 @@ public abstract class LinearPaletteMixin implements PaletteExtension {
 
     @Shadow
     @Final
-    private BlockState[] values;
+    private Object[] values;
 
     @Override
     public boolean maybeHas(Predicate<BlockState> predicate) {
         for (int i = 0; i < this.size; i++) {
-            if (predicate.test(this.values[i])) {
+            if (predicate.test((BlockState) this.values[i])) {
                 return true;
             }
         }
