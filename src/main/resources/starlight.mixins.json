@@ -12,8 +12,11 @@
     "common.chunk.ProtoChunkMixin",
     "common.lightengine.LevelLightEngineMixin",
     "common.lightengine.ThreadedLevelLightEngineMixin",
+    "common.world.BiomeMixin",
     "common.world.ChunkSerializerMixin",
+    "common.world.LakeFeatureMixin",
     "common.world.LevelMixin",
+    "common.world.MushroomBlockMixin",
     "common.world.ServerWorldMixin"
   ],
   "client": [
