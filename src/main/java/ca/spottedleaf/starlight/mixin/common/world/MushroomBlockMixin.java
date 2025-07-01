@@ -20,9 +20,9 @@ public abstract class MushroomBlockMixin {
     private static final Random random = new Random();
 
     @WrapOperation(method = "canSurvive", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelReader;getRawBrightness(Lnet/minecraft/core/BlockPos;I)I"))
+    @SuppressWarnings("deprecation")
     private int removeBrightnessCalls(LevelReader instance, BlockPos blockPos, int ambiance, Operation<Integer> original) {
         ChunkAccess chunk = instance.getChunk(blockPos.getX() >> 4, blockPos.getZ() >> 4, ChunkStatus.LIQUID_CARVERS, false);
-        // TODO: remove asserts
         assert chunk != null;
         if (chunk.getStatus().isOrAfter(ChunkStatus.LIGHT)) {
             return original.call(instance, blockPos, ambiance);
@@ -31,7 +31,6 @@ public abstract class MushroomBlockMixin {
             return 0;
         }
         if (chunk.getStatus().isOrAfter(ChunkStatus.FEATURES)) {
-            assert instance instanceof WorldGenRegion;
             if (((WorldGenRegion) instance).getLevel().getServer().getTickCount() == 0) {
                 return 15;
             }

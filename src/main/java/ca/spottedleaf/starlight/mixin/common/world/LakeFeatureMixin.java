@@ -7,19 +7,12 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkStatus;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-
-import java.util.Random;
 
 @Mixin(LakeFeature.class)
 public abstract class LakeFeatureMixin {
-    @Unique
-    private static final Random random = new Random();
-
     @WrapOperation(
             method = "place(Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/configurations/BlockStateConfiguration;)Z",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/WorldGenLevel;getBrightness(Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/BlockPos;)I")
@@ -30,20 +23,11 @@ public abstract class LakeFeatureMixin {
         if (chunk.getStatus().isOrAfter(ChunkStatus.LIGHT)) {
             return original.call(instance, lightLayer, blockPos);
         }
+        // bugged dirt lakes
         if (chunk.getStatus().isOrAfter(ChunkStatus.FEATURES)) {
-//            if (instance.getLevel().getServer().getTickCount() == 0) {
-//                return !isUnderground(chunk, blockPos) ? 15 : 0;
-//            }
-//            return random.nextInt(3) == 0 && !isUnderground(chunk, blockPos) ? 15 : 0;
-            return !isUnderground(chunk, blockPos) ? 15 : 0;
+            return 0;
         }
         // liquid_carvers, always grass? (matches vanilla)
         return 15;
-    }
-
-    @Unique
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean isUnderground(ChunkAccess chunk, BlockPos pos) {
-        return pos.getY() + 4 < chunk.getHeight(Heightmap.Types.WORLD_SURFACE_WG, pos.getX(), pos.getZ());
     }
 }
