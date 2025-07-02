@@ -31,7 +31,7 @@ public abstract class MushroomBlockMixin {
             return 0;
         }
         if (chunk.getStatus().isOrAfter(ChunkStatus.FEATURES)) {
-            if (((WorldGenRegion) instance).getLevel().getServer().getTickCount() == 0) {
+            if (((WorldGenRegion) instance).level.getServer().getTickCount() == 0) {
                 return 15;
             }
             return random.nextInt(5) < 2 ? 15 : 0;

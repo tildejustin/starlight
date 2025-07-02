@@ -32,3 +32,6 @@ mutable field net/minecraft/world/level/lighting/LevelLightEngine skyEngine Lnet
 
 # ThreadedLevelLightEngine
 accessible class net/minecraft/server/level/ThreadedLevelLightEngine$TaskType
+
+# WorldGenRegion
+accessible field net/minecraft/server/level/WorldGenRegion level Lnet/minecraft/server/level/ServerLevel;
