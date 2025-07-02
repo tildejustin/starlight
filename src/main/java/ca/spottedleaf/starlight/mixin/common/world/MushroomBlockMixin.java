@@ -34,7 +34,7 @@ public abstract class MushroomBlockMixin {
             if (((WorldGenRegion) instance).getLevel().getServer().getTickCount() == 0) {
                 return 15;
             }
-            return random.nextInt(3) == 0 ? 15 : 0;
+            return random.nextInt(5) < 2 ? 15 : 0;
         }
         // liquid_carvers, do not spawn mushrooms (matches vanilla)
         return 15;
