@@ -4,6 +4,7 @@ import ca.spottedleaf.starlight.common.blockstate.ExtendedAbstractBlockState;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.AbstractStateHolder;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateHolder;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BlockState.class)
+@Mixin(BlockBehaviour.BlockStateBase.class)
 public abstract class BlockStateBaseMixin extends AbstractStateHolder<Block, BlockState> implements StateHolder<BlockState>, ExtendedAbstractBlockState {
 
     @Shadow
@@ -23,7 +24,7 @@ public abstract class BlockStateBaseMixin extends AbstractStateHolder<Block, Blo
     private boolean useShapeForLightOcclusion;
 
     @Shadow
-    private BlockState.Cache cache;
+    private BlockBehaviour.BlockStateBase.Cache cache;
 
     @Unique
     private int opacityIfCached;

@@ -21,12 +21,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 @Mixin(ServerLevel.class)
 public abstract class ServerWorldMixin extends Level implements ExtendedWorld {
 
     protected ServerWorldMixin(final LevelData levelData, final DimensionType dimensionType,
-                               final BiFunction<Level, Dimension, ChunkSource> biFunction, final ProfilerFiller supplier, final boolean bl) {
+                               final BiFunction<Level, Dimension, ChunkSource> biFunction, final Supplier<ProfilerFiller> supplier, final boolean bl) {
         super(levelData, dimensionType, biFunction, supplier, bl);
     }
 

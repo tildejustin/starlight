@@ -14,6 +14,7 @@ import net.minecraft.world.level.storage.LevelData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 
 @Mixin(ClientLevel.class)
@@ -22,7 +23,7 @@ public abstract class ClientLevelMixin extends Level implements ExtendedWorld {
     @Shadow public abstract ClientChunkCache getChunkSource();
 
     protected ClientLevelMixin(final LevelData levelData, final DimensionType dimensionType,
-                               final BiFunction<Level, Dimension, ChunkSource> biFunction, final ProfilerFiller supplier, final boolean bl) {
+                               final BiFunction<Level, Dimension, ChunkSource> biFunction, final Supplier<ProfilerFiller> supplier, final boolean bl) {
         super(levelData, dimensionType, biFunction, supplier, bl);
     }
 
